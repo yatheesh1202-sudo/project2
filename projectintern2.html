@@ -1,0 +1,94 @@
+#!/bin/bash
+
+# ============================================
+# Git Version Control Demo
+# ============================================
+
+# Create project folder
+mkdir Git-Version-Control-Demo
+cd Git-Version-Control-Demo
+
+# Initialize Git repository
+git init
+
+# Configure Git (Replace with your details)
+git config user.name "Your Name"
+git config user.email "youremail@example.com"
+
+# Create README file
+cat <<EOF > README.md
+# Git Version Control Demo
+
+This project demonstrates:
+- Git Repository Initialization
+- Staging Files
+- Committing Changes
+- Branching
+- Merging
+EOF
+
+# Create HTML file
+cat <<EOF > index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Git Demo</title>
+</head>
+<body>
+    <h1>Welcome to Git Version Control Demo</h1>
+    <p>Initial Version</p>
+</body>
+</html>
+EOF
+
+# Stage files
+git add .
+
+# First commit
+git commit -m "Initial commit"
+
+# Create feature branch
+git branch feature-update
+git checkout feature-update
+
+# Update HTML file
+cat <<EOF > index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Git Demo</title>
+</head>
+<body>
+    <h1>Welcome to Git Version Control Demo</h1>
+    <p>Updated from Feature Branch</p>
+</body>
+</html>
+EOF
+
+# Stage updated file
+git add .
+
+# Second commit
+git commit -m "Updated index.html in feature branch"
+
+# Switch back to main (or master)
+git checkout main 2>/dev/null || git checkout master
+
+# Merge feature branch
+git merge feature-update
+
+# Show commit history
+echo "========== Git Log =========="
+git log --oneline
+
+# Show branches
+echo "========== Branches =========="
+git branch
+
+# Show repository status
+echo "========== Status =========="
+git status
+
+echo "========================================"
+echo "Git Version Control Demo Completed!"
+echo "========================================"
